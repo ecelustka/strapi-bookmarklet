@@ -3,7 +3,8 @@ javascript:(
     // set basic variables
     var components = document.querySelectorAll('.component_name');
     var styleTag = document.createElement('style');
-    var overlayCss =  `.custom-overlay ~ label + div { 
+    var overlayCss = `
+    .custom-overlay ~ label + div { 
         height: 80px;
         overflow: hidden;
         position: relative
@@ -18,13 +19,12 @@ javascript:(
           top: 0;
           z-index: 1;
         }
-        `;
+    `;
 
     components.forEach(function(component) {
         // open component labels
         component.style.width = 'auto';
         component.style.paddingLeft = '39px';
-        component.classList.add('custom-overlay');
 
         // add class to parent
         var parent = component.parentElement;

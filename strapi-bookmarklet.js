@@ -32,7 +32,7 @@ javascript:(
         
         // add eventlistener to parent
         parent.addEventListener('click', function() {
-            parent.classList.remove('custom-overlay');
+            parent.classList.toggle('custom-overlay');
         }, false);
     });
 

@@ -1,5 +1,5 @@
 javascript:(
-    function () {
+    function initOverlay() {
     // set basic variables
     var components = document.querySelectorAll('.component_name');
     var styleTag = document.createElement('style');
@@ -20,6 +20,11 @@ javascript:(
           z-index: 1;
         }
     `;
+    var observerTarget = document.querySelector('body');
+    var observerCfg = {
+        childList: true,
+        subtree: true
+    };
 
     components.forEach(function(component) {
         // open component labels
@@ -39,4 +44,16 @@ javascript:(
     // add stylesheet for components overlay
     styleTag.innerHTML = overlayCss;
     document.body.appendChild(styleTag);
+
+    var reload = true
+
+    // intersection obeserver for mutations
+    var observer = new MutationObserver(function (mutations) {
+        if(reload) {
+            reload = false;
+            return initOverlay();
+        }
+    })
+
+    observer.observe(observerTarget, observerCfg);
 })();

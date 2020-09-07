@@ -3,6 +3,7 @@ javascript:(
     // set basic variables
     var components = document.querySelectorAll('.component_name');
     var styleTag = document.createElement('style');
+    var url = window.location.pathname;
     var overlayCss = `
     .custom-overlay ~ label + div { 
         height: 80px;
@@ -49,9 +50,14 @@ javascript:(
 
     // intersection obeserver for mutations
     var observer = new MutationObserver(function (mutations) {
-        if(reload) {
+        var newUrl = window.location.pathname;
+
+        if (url !== newUrl && reload) {
             reload = false;
-            return initOverlay();
+            
+            setTimeout(function() {
+                initOverlay()
+            }, 1500)
         }
     })
 
